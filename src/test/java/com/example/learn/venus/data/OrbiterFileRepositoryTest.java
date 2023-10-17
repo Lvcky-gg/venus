@@ -117,6 +117,9 @@ class OrbiterFileRepositoryTest {
         boolean act = repo.deleteBId(2);
         assertTrue(act);
 
+        Orbiter o =  repo.findById(2);
+        assertNull(o);
+
     }
     @Test
     void shouldNotDelete() throws DataAccessException {
