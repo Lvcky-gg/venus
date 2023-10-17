@@ -112,6 +112,18 @@ class OrbiterFileRepositoryTest {
         assertFalse(act);
     }
 
+    @Test
+    void shouldDelete() throws DataAccessException {
+        boolean act = repo.deleteBId(2);
+        assertTrue(act);
+
+    }
+    @Test
+    void shouldNotDelete() throws DataAccessException {
+        boolean act = repo.deleteBId(2);
+        assertFalse(act);
+
+    }
 
 
 }

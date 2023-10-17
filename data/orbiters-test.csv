@@ -1,6 +1,5 @@
 orbiterId,name,type,sponsor
 1,A1,MODULE,Tesla
-2,B1,MODULE_WITH_DOCK,Tesla
-3,TEST,SHUTTLE,Johnny Ray
+3,Shuttle #1,SHUTTLE,NASA
 4,Kalesh Kavon,ASTRONAUT,NASA
 5,Alexander Washington,VENUSIAN,

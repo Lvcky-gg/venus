@@ -78,7 +78,15 @@ public class OrbiterFileRepository {
         return false;
     }
 
-    public boolean deleteBId(int orbiterId){
+    public boolean deleteBId(int orbiterId) throws DataAccessException {
+        List<Orbiter> all = findAll();
+        for(int i = 0; i < all.size(); i++){
+            if(all.get(i).getOrbiterId() == orbiterId){
+               all.remove(i);
+                writeAll(all);
+                return true;
+            }
+        }
         return false;
     }
 
