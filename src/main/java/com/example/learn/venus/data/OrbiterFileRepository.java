@@ -3,9 +3,7 @@ import com.example.learn.venus.models.Orbiter;
 
 import com.example.learn.venus.models.OrbiterType;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +51,46 @@ public class OrbiterFileRepository {
             }
         }
         return result;
+    }
+
+    public Orbiter add(Orbiter orbiter) throws DataAccessException {
+        List<Orbiter> all = findAll();
+        int nextId = 0;
+        for(Orbiter o: all){
+            nextId = Math.max(nextId, o.getOrbiterId());
+        }
+        nextId++;
+        orbiter.setOrbiterId(nextId);
+        all.add(orbiter);
+        writeAll(all);
+        return orbiter;
+    }
+
+    public boolean update(Orbiter orbiter){
+        return false;
+    }
+
+    public boolean deleteBId(int orbiterId){
+        return false;
+    }
+
+    private void writeAll(List<Orbiter> orbiters) throws DataAccessException{
+        try(PrintWriter writer = new PrintWriter(filepath)){
+            writer.println("orbiterId,name,type,sponsor");
+            for(Orbiter o : orbiters){
+                writer.println(serialize(o));
+            }
+        }catch (IOException e){
+            throw new DataAccessException(e.getMessage(),e);
+        }
+    }
+
+    private String serialize(Orbiter orbiter){
+        return String.format("%s,%s,%s,%s",
+                orbiter.getOrbiterId(),
+                orbiter.getName(),
+                orbiter.getType(),
+                orbiter.getSponsor());
     }
 
 }

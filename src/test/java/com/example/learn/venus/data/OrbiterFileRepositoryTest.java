@@ -55,5 +55,17 @@ class OrbiterFileRepositoryTest {
 
     }
 
+    @Test
+    void shouldAddOrbiter() throws DataAccessException {
+        Orbiter orbiter = new Orbiter();
+        orbiter.setType(OrbiterType.MODULE);
+        orbiter.setName("TEST");
+        orbiter.setSponsor("TEST");
+        Orbiter actual = repo.add(orbiter);
+
+        assertNotNull(actual);
+        assertEquals(6, actual.getOrbiterId());
+    }
+
 
 }
