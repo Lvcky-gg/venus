@@ -45,5 +45,9 @@ public class OrbiterFileRepository {
         }
         return null;
     }
+    public List<Orbiter> findByType(OrbiterType type){
+        ArrayList<Orbiter> result = new ArrayList<>();
+        return result;
+    }
 
 }
