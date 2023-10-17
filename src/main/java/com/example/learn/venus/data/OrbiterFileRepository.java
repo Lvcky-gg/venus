@@ -66,7 +66,15 @@ public class OrbiterFileRepository {
         return orbiter;
     }
 
-    public boolean update(Orbiter orbiter){
+    public boolean update(Orbiter orbiter) throws DataAccessException {
+        List<Orbiter> all = findAll();
+        for(int i = 0; i < all.size(); i++){
+            if(all.get(i).getOrbiterId() == orbiter.getOrbiterId()){
+                all.set(i, orbiter);
+                writeAll(all);
+                return true;
+            }
+        }
         return false;
     }
 
