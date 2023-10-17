@@ -17,5 +17,18 @@ class OrbiterFileRepositoryTest {
         assertNotNull(actual);
         assertEquals(5, actual.size());
     }
+    @Test
+    void shouldFindOrbiter(){
+        Orbiter kalesh = repo.findById(4);
+        assertNotNull(kalesh);
+        assertEquals("Kalesh Kavon",kalesh.getName());
+    }
+    @Test
+    void shouldNotFindOrbiter(){
+        Orbiter no = repo.findById(1000000);
+        assertNull(no);
+
+    }
+
 
 }

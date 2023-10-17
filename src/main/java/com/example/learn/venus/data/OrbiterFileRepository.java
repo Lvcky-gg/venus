@@ -21,7 +21,7 @@ public class OrbiterFileRepository {
         try(BufferedReader reader = new BufferedReader(new FileReader(filepath))){
             reader.readLine();
             for(String line = reader.readLine(); line != null; line = reader.readLine()){
-                String[] fields = line.split(",");
+                String[] fields = line.split(",", -1);
                 if(fields.length == 4){
                     Orbiter orbiter = new Orbiter();
                     orbiter.setOrbiterId(Integer.parseInt(fields[0]));
@@ -37,4 +37,13 @@ public class OrbiterFileRepository {
         }
         return result;
     }
+    public Orbiter findById(int orbiterId){
+        for(Orbiter orbiter: findAll()){
+            if(orbiter.getOrbiterId() == orbiterId){
+                return orbiter;
+            }
+        }
+        return null;
+    }
+
 }
