@@ -14,7 +14,7 @@ public class OrbiterFileRepository {
     public OrbiterFileRepository(String filepath) {
         this.filepath = filepath;
     }
-    public List<Orbiter> findAll(){
+    public List<Orbiter> findAll() throws DataAccessException {
         ArrayList<Orbiter> result = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(filepath))){
             reader.readLine();
@@ -29,13 +29,16 @@ public class OrbiterFileRepository {
                     result.add(orbiter);
                 }
             }
-        }catch(IOException ex){
+        }catch(FileNotFoundException ex){
             //nothing?
+        }
+        catch(IOException ex){
+           throw new DataAccessException(ex.getMessage(), ex);
 
         }
         return result;
     }
-    public Orbiter findById(int orbiterId){
+    public Orbiter findById(int orbiterId) throws DataAccessException {
         for(Orbiter orbiter: findAll()){
             if(orbiter.getOrbiterId() == orbiterId){
                 return orbiter;
@@ -43,7 +46,7 @@ public class OrbiterFileRepository {
         }
         return null;
     }
-    public List<Orbiter> findByType(OrbiterType type){
+    public List<Orbiter> findByType(OrbiterType type) throws DataAccessException {
         ArrayList<Orbiter> result = new ArrayList<>();
         for(Orbiter orbiter: findAll()){
             if(orbiter.getType() == type){

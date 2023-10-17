@@ -28,25 +28,25 @@ class OrbiterFileRepositoryTest {
     }
 
     @Test
-    void shouldFindFiveOrbiters(){
+    void shouldFindFiveOrbiters() throws DataAccessException {
         List<Orbiter> actual = repo.findAll();
         assertNotNull(actual);
         assertEquals(5, actual.size());
     }
     @Test
-    void shouldFindOrbiter(){
+    void shouldFindOrbiter() throws DataAccessException {
         Orbiter kalesh = repo.findById(4);
         assertNotNull(kalesh);
         assertEquals("Kalesh Kavon",kalesh.getName());
     }
     @Test
-    void shouldNotFindOrbiter(){
+    void shouldNotFindOrbiter() throws DataAccessException {
         Orbiter no = repo.findById(1000000);
         assertNull(no);
 
     }
     @Test
-    void shouldFindOneOfEachType(){
+    void shouldFindOneOfEachType() throws DataAccessException {
         List<Orbiter> modules = repo.findByType(OrbiterType.MODULE);
         List<Orbiter> modulesWithDocks = repo.findByType(OrbiterType.MODULE_WITH_DOCK);
         List<Orbiter> shuttle = repo.findByType(OrbiterType.SHUTTLE);
