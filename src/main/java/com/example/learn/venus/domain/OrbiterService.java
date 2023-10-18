@@ -42,7 +42,10 @@ public class OrbiterService {
             res.addErrorMessages("Can not update type.");
             return res;
         }
-        repository.update(orbiter);
+        boolean success = repository.update(orbiter);
+        if(!success){
+            res.addErrorMessages("Could not find OrbiterId " + orbiter.getOrbiterId());
+        }
         return res;
     }
     private OrbiterResult validateInputs(Orbiter orbiter){
