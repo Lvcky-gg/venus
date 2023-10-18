@@ -7,12 +7,17 @@ import com.example.learn.venus.models.Orbiter;
 import com.example.learn.venus.models.OrbiterType;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrbiterServiceTest {
     OrbiterService service = new OrbiterService(new OrbiterRepositoryDouble());
     @Test
-    void shouldAddOrbiter(){
+    void shouldFindByType() throws DataAccessException {
+        List<Orbiter> astros = service.findByType(OrbiterType.ASTRONAUT);
+        assertNotNull(astros);
+        assertEquals(2, astros.size());
 
     }
     @Test
@@ -64,6 +69,11 @@ class OrbiterServiceTest {
     void shouldDelete() throws DataAccessException{
         OrbiterResult res = service.deleteById(3);
         assertTrue(res.isSuccess());
+    }
+    @Test
+    void shouldNotDeleteDock() throws DataAccessException{
+        OrbiterResult res = service.deleteById(1);
+        assertFalse(res.isSuccess());
     }
 
 

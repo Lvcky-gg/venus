@@ -15,6 +15,11 @@ public class OrbiterService {
         this.repository = repository;
     }
 
+    public List<Orbiter>findByType(OrbiterType type) throws DataAccessException{
+        return repository.findByType(type);
+    }
+
+
     public OrbiterResult add(Orbiter orbiter) throws DataAccessException {
         OrbiterResult res = validateInputs(orbiter);
         if(!res.isSuccess()){
