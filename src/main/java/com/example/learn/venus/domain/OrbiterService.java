@@ -57,22 +57,22 @@ public class OrbiterService {
         Orbiter orbiter = repository.findById(orbiterId);
         if(orbiter == null){
             res.addErrorMessages("Could not find orbiter Id " + orbiter);
-            if(!res.isSuccess()){
-                return res;
-            }
-
-            boolean success = repository.deleteBId(orbiterId);
-            if(!success){
-                res.addErrorMessages("Could not find OrbiterId " + orbiter.getOrbiterId());
-            }
-
             return res;
         }
 
         Map<OrbiterType, Integer>counts = countType();
         counts.put(orbiter.getType(), counts.get(orbiter.getType())-1);
+        res = validateDomain(counts);
+        if(!res.isSuccess()){
+            return res;
+        }
 
-        return null;
+        boolean success = repository.deleteBId(orbiterId);
+        if(!success){
+            res.addErrorMessages("Could not find OrbiterId " + orbiter.getOrbiterId());
+        }
+
+        return res;
     }
     private Map<OrbiterType, Integer> countType(){
 

@@ -60,6 +60,11 @@ class OrbiterServiceTest {
         OrbiterResult res = service.update(new Orbiter(OrbiterType.ASTRONAUT,"       ", 3,null));
         assertFalse(res.isSuccess());
     }
+    @Test
+    void shouldDelete() throws DataAccessException{
+        OrbiterResult res = service.deleteById(3);
+        assertTrue(res.isSuccess());
+    }
 
 
 
