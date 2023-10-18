@@ -3,6 +3,8 @@ package com.example.learn.venus.domain;
 import com.example.learn.venus.data.DataAccessException;
 import com.example.learn.venus.data.OrbiterRepository;
 import com.example.learn.venus.models.Orbiter;
+import com.example.learn.venus.models.OrbiterType;
+
 import java.util.List;
 
 public class OrbiterService {
@@ -36,8 +38,46 @@ public class OrbiterService {
     }
 
     private OrbiterResult validateDomain(Orbiter orbiter) throws DataAccessException {
+
+
         OrbiterResult res = validateInputs(orbiter);
         List<Orbiter> allOrbiters = repository.findAll();
+
+
+        if(orbiter.getType() == OrbiterType.ASTRONAUT
+                || orbiter.getType() == OrbiterType.SHUTTLE){
+            int astroCount = 0;
+            int shuttleCount = 0;
+            int modCount = 0;
+            int dockCount = 0;
+            for(Orbiter o: allOrbiters){
+                switch(o.getType()){
+                    case MODULE:
+                        modCount++;
+                        break;
+                    case MODULE_WITH_DOCK:
+                        dockCount++;
+                        break;
+                    case ASTRONAUT:
+                        astroCount++;
+                        break;
+                    case SHUTTLE:
+                        shuttleCount++;
+                        break;
+                }
+            }
+            if(orbiter.getType() == OrbiterType.ASTRONAUT){
+                if(astroCount + 1 > modCount * 4 + dockCount * 2){
+                    res.addErrorMessages("No room for an astronaut.");
+                }
+            }
+            if(orbiter.getType() == OrbiterType.SHUTTLE){
+                if(shuttleCount + 1 > dockCount){
+                    res.addErrorMessages("No room for a shuttle.");
+                }
+            }
+
+        }
         return res;
     }
 }

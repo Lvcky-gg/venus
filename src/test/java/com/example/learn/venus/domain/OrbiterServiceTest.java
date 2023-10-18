@@ -1,5 +1,6 @@
 package com.example.learn.venus.domain;
 
+import com.example.learn.venus.data.DataAccessException;
 import com.example.learn.venus.data.OrbiterRepositoryDouble;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +13,13 @@ class OrbiterServiceTest {
 
     }
     @Test
-    void shouldNotAddNullOrbiter(){
+    void shouldNotAddNullOrbiter() throws DataAccessException {
         OrbiterResult result = service.add(null);
         assertFalse(result.isSuccess());
+
+    }
+    @Test
+    void shouldNotAddAstronautWithNoRoom() throws DataAccessException {
 
     }
 

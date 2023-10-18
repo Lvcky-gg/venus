@@ -34,7 +34,8 @@ public class OrbiterRepositoryDouble implements OrbiterRepository{
 
     @Override
     public Orbiter add(Orbiter orbiter) throws DataAccessException {
-        return null;
+        orbiters.add(orbiter);
+        return orbiter;
     }
 
     @Override
