@@ -1,6 +1,7 @@
 package com.example.learn.venus.domain;
 
 import com.example.learn.venus.data.DataAccessException;
+import com.example.learn.venus.data.OrbiterRepository;
 import com.example.learn.venus.data.OrbiterRepositoryDouble;
 import com.example.learn.venus.models.Orbiter;
 import com.example.learn.venus.models.OrbiterType;
@@ -43,6 +44,16 @@ class OrbiterServiceTest {
         service.add(new Orbiter(OrbiterType.MODULE_WITH_DOCK,"TEST Dock", 0,null));
         OrbiterResult res = service.add(new Orbiter(OrbiterType.SHUTTLE,"TEST", 0,null));
         assertTrue(res.isSuccess());
+    }
+    @Test
+    void shouldUpdate() throws DataAccessException{
+        OrbiterResult res = service.update(new Orbiter(OrbiterType.ASTRONAUT,"TEST UPDATE", 3,null));
+        assertTrue(res.isSuccess());
+    }
+    @Test
+    void shouldNotUpdateType() throws DataAccessException {
+        OrbiterResult res = service.update(new Orbiter(OrbiterType.VENUSIAN,"TEST UPDATE", 3,null));
+        assertFalse(res.isSuccess());
     }
 
 
