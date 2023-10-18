@@ -38,6 +38,13 @@ class OrbiterServiceTest {
         OrbiterResult res = service.add(new Orbiter(OrbiterType.SHUTTLE,"TEST", 0,null));
         assertFalse(res.isSuccess());
     }
+    @Test
+    void shouldAddShuttleWithNoRoom() throws DataAccessException{
+        service.add(new Orbiter(OrbiterType.MODULE_WITH_DOCK,"TEST Dock", 0,null));
+        OrbiterResult res = service.add(new Orbiter(OrbiterType.SHUTTLE,"TEST", 0,null));
+        assertTrue(res.isSuccess());
+    }
+
 
 
 }
