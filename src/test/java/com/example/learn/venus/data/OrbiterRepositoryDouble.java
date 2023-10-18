@@ -27,6 +27,11 @@ public class OrbiterRepositoryDouble implements OrbiterRepository{
 
     @Override
     public Orbiter findById(int orbiterId) throws DataAccessException {
+        for (Orbiter o: orbiters){
+            if(o.getOrbiterId() == orbiterId){
+                return o;
+            }
+        }
         return null;
     }
 

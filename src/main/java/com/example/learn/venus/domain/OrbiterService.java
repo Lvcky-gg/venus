@@ -27,6 +27,24 @@ public class OrbiterService {
 
         return res;
     }
+    public OrbiterResult update(Orbiter orbiter) throws DataAccessException{
+        OrbiterResult res = validateInputs(orbiter);
+        if(!res.isSuccess()){
+            return res;
+        }
+        Orbiter existing = repository.findById(orbiter.getOrbiterId());
+        if(existing == null){
+            res.addErrorMessages("Orbiter Id " + orbiter.getOrbiterId() + " not found.");
+            return res;
+        }
+
+        if(existing.getType() != orbiter.getType()){
+            res.addErrorMessages("Can not update type.");
+            return res;
+        }
+        repository.update(orbiter);
+        return res;
+    }
     private OrbiterResult validateInputs(Orbiter orbiter){
         OrbiterResult res = new OrbiterResult();
         if(orbiter == null){
