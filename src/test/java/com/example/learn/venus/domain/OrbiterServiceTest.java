@@ -2,6 +2,8 @@ package com.example.learn.venus.domain;
 
 import com.example.learn.venus.data.DataAccessException;
 import com.example.learn.venus.data.OrbiterRepositoryDouble;
+import com.example.learn.venus.models.Orbiter;
+import com.example.learn.venus.models.OrbiterType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +22,15 @@ class OrbiterServiceTest {
     }
     @Test
     void shouldNotAddAstronautWithNoRoom() throws DataAccessException {
+        OrbiterResult res = service.add(new Orbiter(OrbiterType.ASTRONAUT,"TEST", 0,null));
+        assertFalse(res.isSuccess());
+    }
+    @Test
+    void shouldBeAbleToAddAstronaut() throws DataAccessException{
+       service.add(new Orbiter(OrbiterType.MODULE,"TEST", 0,null));
+        OrbiterResult res = service.add(new Orbiter(OrbiterType.ASTRONAUT,"TEST", 0,null));
+        assertTrue(res.isSuccess());
+        assertNotNull(res.getPayload());
 
     }
 

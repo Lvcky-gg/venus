@@ -15,6 +15,9 @@ public class OrbiterRepositoryDouble implements OrbiterRepository{
         moduleWithDock.setName("Mod with Dock");
         moduleWithDock.setType(OrbiterType.MODULE_WITH_DOCK);
         orbiters.add(moduleWithDock);
+        orbiters.add(new Orbiter(OrbiterType.ASTRONAUT,"Astro #1",2, null));
+        orbiters.add(new Orbiter(OrbiterType.ASTRONAUT,"Astro #2",3, null));
+        orbiters.add(new Orbiter(OrbiterType.ASTRONAUT,"Shuttle #1",4, null));
     }
 
     @Override

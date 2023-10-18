@@ -22,8 +22,10 @@ public class OrbiterService {
         if(!res.isSuccess()){
             return res;
         }
+        Orbiter o = repository.add(orbiter);
+        res.setPayload(o);
 
-        return null;
+        return res;
     }
     private OrbiterResult validateInputs(Orbiter orbiter){
         OrbiterResult res = new OrbiterResult();
@@ -34,6 +36,7 @@ public class OrbiterService {
         if(orbiter.getName() == null || orbiter.getName().trim().length() == 0){
             res.addErrorMessages("name is required.");
         }
+
         return res;
     }
 
