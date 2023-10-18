@@ -17,7 +17,7 @@ public class OrbiterRepositoryDouble implements OrbiterRepository{
         orbiters.add(moduleWithDock);
         orbiters.add(new Orbiter(OrbiterType.ASTRONAUT,"Astro #1",2, null));
         orbiters.add(new Orbiter(OrbiterType.ASTRONAUT,"Astro #2",3, null));
-        orbiters.add(new Orbiter(OrbiterType.ASTRONAUT,"Shuttle #1",4, null));
+        orbiters.add(new Orbiter(OrbiterType.SHUTTLE,"Shuttle #1",4, null));
     }
 
     @Override
