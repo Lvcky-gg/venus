@@ -55,6 +55,7 @@ public class Controller {
         view.printHeader(MenuOptions.DISPLAY_ORBITERS.getTitle());
         OrbiterType type = view.readOrbiterType();
         List<Orbiter> orbiters = service.findByType(type);
+        view.displayOrbiters(orbiters);
 
     }
     private void createOrbiter(){

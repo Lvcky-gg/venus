@@ -1,7 +1,9 @@
 package com.example.learn.venus.ui;
 
+import com.example.learn.venus.models.Orbiter;
 import com.example.learn.venus.models.OrbiterType;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -30,6 +32,21 @@ public class View {
         }
         int idx = readInt("Select [0-4]: ",0,4);
         return values[idx];
+    }
+
+    public void displayOrbiters(List<Orbiter> orbiter){
+        printHeader("Orbiters:");
+        if(orbiter.size() == 0){
+            System.out.println("No orbiters found");
+        }else{
+            for(Orbiter o : orbiter){
+                System.out.printf(
+                        "%s - %s - %s%n",
+                        o.getName(),
+                        o.getType(),
+                        o.getSponsor());
+            }
+        }
     }
 
     private String readString(String prompt){

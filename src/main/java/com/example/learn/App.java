@@ -7,7 +7,7 @@ import com.example.learn.venus.ui.View;
 
 public class App {
     public static void main(String[] args){
-        OrbiterFileRepository repository = new OrbiterFileRepository("./data/orbiters.csv");
+        OrbiterFileRepository repository = new OrbiterFileRepository("./data/Orbiters.csv");
         OrbiterService service = new OrbiterService(repository);
         View view = new View();
         Controller controller = new Controller(service, view);
