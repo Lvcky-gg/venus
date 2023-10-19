@@ -18,17 +18,40 @@ public class Controller {
             System.out.println(opts.getTitle());
             switch(opts){
                 case EXIT:
+                    view.printHeader("Goodbye.");
                     break;
                 case DISPLAY_ORBITERS:
+                    displayOrbitters();
                     break;
                 case CREATE_ORBITER:
+                    createOrbiter();
                     break;
                 case UPDATE_ORBITER:
+                    updateOrbiter();
                     break;
                 case DELETE_ORBITER:
+                    deleteOrbitter();
                     break;
             }
 
         }while(opts != MenuOptions.EXIT);
+    }
+
+    private void displayOrbitters(){
+        view.printHeader(MenuOptions.DISPLAY_ORBITERS.getTitle());
+
+    }
+    private void createOrbiter(){
+        view.printHeader(MenuOptions.CREATE_ORBITER.getTitle());
+
+    }
+
+    private void updateOrbiter(){
+        view.printHeader(MenuOptions.UPDATE_ORBITER.getTitle());
+
+    }
+    private void deleteOrbitter(){
+        view.printHeader(MenuOptions.DELETE_ORBITER.getTitle());
+
     }
 }
