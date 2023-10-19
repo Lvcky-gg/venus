@@ -18,6 +18,14 @@ public class View {
         return values[idx];
     }
 
+    public Orbiter makeOrbiter(){
+        Orbiter orbiter = new Orbiter();
+        orbiter.setName(readRequiredString("Name: "));
+        orbiter.setType(readOrbiterType());
+        orbiter.setSponsor(readString("Sponsor: "));
+        return orbiter;
+    }
+
     public void printHeader(String message){
         System.out.println();
         System.out.println(message);
