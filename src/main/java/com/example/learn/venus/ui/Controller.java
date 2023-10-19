@@ -67,8 +67,16 @@ public class Controller {
 
     }
 
-    private void updateOrbiter(){
+    private void updateOrbiter() throws DataAccessException {
         view.printHeader(MenuOptions.UPDATE_ORBITER.getTitle());
+        OrbiterType type = view.readOrbiterType();
+        List<Orbiter> orbiters = service.findByType(type);
+        Orbiter orbiter = view.update(orbiters);
+        if(orbiter == null){
+            return;
+        }
+        OrbiterResult res =service.update(orbiter);
+        view.displayResult(res);
 
     }
     private void deleteOrbitter(){
