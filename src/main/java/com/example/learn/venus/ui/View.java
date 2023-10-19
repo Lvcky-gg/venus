@@ -1,5 +1,6 @@
 package com.example.learn.venus.ui;
 
+import com.example.learn.venus.domain.OrbiterResult;
 import com.example.learn.venus.models.Orbiter;
 import com.example.learn.venus.models.OrbiterType;
 
@@ -16,6 +17,17 @@ public class View {
         }
         int idx = readInt("Select [0-4]: ",0,4);
         return values[idx];
+    }
+    public void displayResult(OrbiterResult res){
+        if(res.isSuccess()){
+            printHeader("Success!");
+        }else{
+            printHeader("Err:");
+            for(String err: res.getMessages()){
+                System.out.println(err);
+            }
+        }
+
     }
 
     public Orbiter makeOrbiter(){

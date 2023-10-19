@@ -1,6 +1,7 @@
 package com.example.learn.venus.ui;
 
 import com.example.learn.venus.data.DataAccessException;
+import com.example.learn.venus.domain.OrbiterResult;
 import com.example.learn.venus.domain.OrbiterService;
 import com.example.learn.venus.models.Orbiter;
 import com.example.learn.venus.models.OrbiterType;
@@ -58,8 +59,11 @@ public class Controller {
         view.displayOrbiters(orbiters);
 
     }
-    private void createOrbiter(){
+    private void createOrbiter() throws DataAccessException {
         view.printHeader(MenuOptions.CREATE_ORBITER.getTitle());
+        Orbiter orbiter = view.makeOrbiter();
+       OrbiterResult res =service.add(orbiter);
+       view.displayResult(res);
 
     }
 
