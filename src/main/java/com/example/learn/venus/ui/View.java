@@ -1,5 +1,7 @@
 package com.example.learn.venus.ui;
 
+import com.example.learn.venus.models.OrbiterType;
+
 import java.util.Scanner;
 
 public class View {
@@ -18,6 +20,16 @@ public class View {
         System.out.println();
         System.out.println(message);
         System.out.println("=".repeat(message.length()));
+    }
+
+    public OrbiterType readOrbiterType(){
+        System.out.println("Types: ");
+        OrbiterType[] values = OrbiterType.values();
+        for(int i = 0; i < values.length; i++){
+            System.out.printf("%s. %s%n",i,values[i]);
+        }
+        int idx = readInt("Select [0-4]: ",0,4);
+        return values[idx];
     }
 
     private String readString(String prompt){
