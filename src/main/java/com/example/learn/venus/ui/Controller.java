@@ -85,7 +85,7 @@ public class Controller {
         List<Orbiter> orbiters = service.findByType(type);
 
 //        int orbiterId
-        Orbiter orbiter = view.getOrbiterToDelete(orbiters);
+        Orbiter orbiter = view.findOrbiter(orbiters);
         if(orbiter == null){
             return;
         }

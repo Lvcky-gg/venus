@@ -30,20 +30,14 @@ public class View {
 
     }
     public Orbiter update(List<Orbiter> orbiters){
-        displayOrbiters(orbiters);
-        if(orbiters.size() == 0){
-            return null;
+        Orbiter orbiter = findOrbiter(orbiters);
+        if(orbiter != null){
+            update(orbiter);
+            return orbiter;
         }
-        int orbiterId = readInt("Orbiter Id: ");
-        for(Orbiter o : orbiters){
-            if(o.getOrbiterId() == orbiterId){
-                return update(o);
-            }
-        }
-        System.out.println("Orbiter Id" + orbiterId + "not found");
         return null;
     }
-    public Orbiter getOrbiterToDelete(List<Orbiter> orbiters){
+    public Orbiter findOrbiter(List<Orbiter> orbiters){
         displayOrbiters(orbiters);
         if(orbiters.size() == 0){
             return null;
