@@ -12,6 +12,9 @@ public class Controller {
     }
 
     public void run(){
-        System.out.println("Functioning");
+        MenuOptions opts;
+        do{
+
+        }while(opts != MenuOptions.EXIT);
     }
 }
