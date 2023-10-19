@@ -43,6 +43,21 @@ public class View {
         System.out.println("Orbiter Id" + orbiterId + "not found");
         return null;
     }
+    public Orbiter getOrbiterToDelete(List<Orbiter> orbiters){
+        displayOrbiters(orbiters);
+        if(orbiters.size() == 0){
+            return null;
+        }
+        int orbiterId = readInt("Orbiter Id: ");
+        for(Orbiter o : orbiters){
+            if(o.getOrbiterId() == orbiterId){
+                return o;
+            }
+        }
+        System.out.println("Orbiter Id" + orbiterId + "not found");
+        return null;
+
+    }
 
     private Orbiter update(Orbiter orbiter){
         String name = readString("Name (" + orbiter.getName() + "):");
